@@ -1,0 +1,24 @@
+in mazePanel update():
+// add the condition for maze reset in the if statement, and move the utilities.mazeReset = false after
+if(maze.getRemainingMoves() ==0 && !(maze.getPx() == maze.exitRoomX() && maze.getPy() == maze.exitRoomY()) && Utilities.mazeReset != true) {
+        	Utilities.inform("No more remaining moves.");
+        }
+		Utilities.mazeReset = false;
+    
+in the execute method in reset class, add Utilities.mazeReset = true; at beginning of the method
+	@Override
+	public void execute() {
+		// TODO Auto-generated method stub
+		
+		if(model != null && model instanceof Maze) 
+		{
+			// cast model to Maze
+			Utilities.mazeReset = true;
+			Maze maze = (Maze) model;
+			Maze newMaze = new Maze();
+			maze.copy(newMaze);
+			MazePanel.enableButton(true);
+			System.out.println("reached Reset.execute()");
+
+		}
+	}
